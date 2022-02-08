@@ -1,5 +1,9 @@
 # **Java** SE
 
+<img src="JavaSE.assets/%E5%90%88%E6%88%90%201.gif" alt="合成 1" style="zoom:80%;" />
+
+<img src="JavaSE.assets/image-20220208182408462.png" alt="image-20220208182408462"  />
+
 ## Day 1 面向对象基础知识
 
 ### 面向对象思想概述、类、对象
@@ -4538,3 +4542,4 @@ public class MapTest4 {
 }
 ```
 
+## Day 7 不可变集合,Stream,异常
