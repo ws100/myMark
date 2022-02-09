@@ -4543,3 +4543,118 @@ public class MapTest4 {
 ```
 
 ## Day 7 不可变集合,Stream,异常
+
+### 创建不可变集合
+
+#### 什么是不可变集合？
+
+- 不可变集合，就是不可被修改的集合。
+- 集合的数据项在创建的时候提供，并且在整个生命周期中都不可改变。否则报错。
+
+#### 为什么要创建不可变集合？
+
+- 如果某个数据不能被修改，把它防御性地拷贝到不可变集合中是个很好的实践。
+- 或者当集合对象被不可信的库调用时，不可变形式是安全的。
+
+| 方法名称                                  | 说明                               |
+| ----------------------------------------- | ---------------------------------- |
+| static  <E> List<E> of(E…elements)        | 创建一个具有指定元素的List集合对象 |
+| static  <E> Set<E> of(E…elements)         | 创建一个具有指定元素的Set集合对象  |
+| static <K  , V>  Map<K，V> of(E…elements) | 创建一个具有指定元素的Map集合对象  |
+
+```java
+public class CollectionDemo {
+    public static void main(String[] args) {
+        // 1、不可变的List集合
+        List<Double> lists = List.of(569.5, 700.5, 523.0,  570.5);
+        // lists.add(689.0);
+        // lists.set(2, 698.5);
+        // System.out.println(lists);
+        double score = lists.get(1);
+        System.out.println(score);
+
+        // 2、不可变的Set集合
+        Set<String> names = Set.of("迪丽热巴", "迪丽热九", "马尔扎哈", "卡尔眨巴" );
+        // names.add("三少爷");
+        System.out.println(names);
+
+        // 3、不可变的Map集合
+        Map<String, Integer> maps = Map.of("huawei",2, "Java开发", 1 , "手表", 1);
+        // maps.put("衣服", 3);
+        System.out.println(maps);
+    }
+}
+```
+
+### Stream流
+
+#### Stream流的概述
+
+![image-20220208194659906](JavaSE.assets/image-20220208194659906.png)
+
+```java
+public class StreamTest {
+    public static void main(String[] args) {
+        List<String> names = new ArrayList<>();
+        Collections.addAll(names, "张三丰","张无忌","周芷若","赵敏","张强");
+        System.out.println(names);
+//
+//        // 1、从集合中找出姓张的放到新集合
+//        List<String> zhangList = new ArrayList<>();
+//        for (String name : names) {
+//            if(name.startsWith("张")){
+//                zhangList.add(name);
+//            }
+//        }
+//        System.out.println(zhangList);
+//
+//        // 2、找名称长度是3的姓名
+//        List<String> zhangThreeList = new ArrayList<>();
+//        for (String name : zhangList) {
+//            if(name.length() == 3){
+//                zhangThreeList.add(name);
+//            }
+//        }
+//        System.out.println(zhangThreeList);
+
+        // 3、使用Stream实现的
+        names.stream().filter(s -> s.startsWith("张")).filter(s -> s.length() == 3).forEach(s -> System.out.println(s));
+    }
+}
+```
+
+##### Stream流式思想的核心
+
+- 先得到集合或者数组的Stream流（就是一根传送带）。
+- 把元素放上去。
+- 然后就用这个Stream流简化的API来方便的操作元素。
+
+##### Stream流的作用是什么，结合了什么技术？
+
+- 简化集合、数组操作的API。结合了Lambda表达式。
+
+#### Stream流的获取
+
+##### Stream流的三类方法
+
+**获取Stream流**
+
+- 创建一条流水线，并把数据放到流水线上准备进行操作
+
+**中间方法**
+
+- 流水线上的操作。一次操作完毕之后，还可以继续进行其他操作。
+
+**终结方法**
+
+- 一个Stream流只能有一个终结方法，是流水线上的最后一个操作
+
+#### Stream流的常用API
+
+#### Stream流的综合应用
+
+#### 收集Stream流
+
+### 异常处理
+
+### 日志框架
